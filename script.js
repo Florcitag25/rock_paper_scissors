@@ -12,16 +12,16 @@ function firstRound(userSelection, computerSelection){
     else if (userSelection2=="Rock" && computerSelection=="Paper"){
         return "Paper beats Rock! You lose!";
     }
-    else if (userSelection=="Rock" && computerSelection=="Scissors"){
+    else if (userSelection2=="Rock" && computerSelection=="Scissors"){
         return "Rock beats Scissors! You Win!";
     }
-    else if (userSelection=="Paper" && computerSelection=="Rock"){
+    else if (userSelection2=="Paper" && computerSelection=="Rock"){
         return "Paper beats Rock! You Win!";
     }
-    else if (userSelection=="Paper" && computerSelection=="Scissors"){
+    else if (userSelection2=="Paper" && computerSelection=="Scissors"){
         return "Scissors beats Paper! You lose!";
     }
-    else if (userSelection=="Scissors" && computerSelection=="Rock"){
+    else if (userSelection2=="Scissors" && computerSelection=="Rock"){
         return "Rock beats Scissors! You lose!";
     }
     else{
