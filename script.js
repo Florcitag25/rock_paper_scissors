@@ -2,13 +2,59 @@ const btnRock = document.querySelector("#Rock");
 const btnPaper = document.querySelector("#Paper");
 const btnScissors = document.querySelector("#Scissors");
 
-btnRock.addEventListener("click", () => playRound("Rock", getComputerChoice()));
-btnPaper.addEventListener("click", () =>
-  playRound("Paper", getComputerChoice())
-);
-btnScissors.addEventListener("click", () =>
-  playRound("Scissors", getComputerChoice())
-);
+let userCount = 0;
+let computerCount = 0;
+let finalResult;
+const newDiv = document.querySelector(".Result");
+
+btnRock.addEventListener("click", function(){
+  let finalResultRound= playRound("Rock", getComputerChoice());
+  if (finalResultRound.includes("lose")) {
+    computerCount++;
+  } else if (finalResultRound.includes("Win")) {
+    userCount++;
+  } else {
+    userCount = userCount;
+    computerCount = computerCount;
+  }
+  let currentScores = document.createElement ("p");
+  currentScores.textContent = "User Score: " + userCount + "  Computer Score: " + computerCount;
+  newDiv.appendChild(currentScores);
+  endOfGame();
+});
+btnPaper.addEventListener("click", function(){
+  let finalResultRound= playRound("Paper", getComputerChoice());
+  if (finalResultRound.includes("lose")) {
+    computerCount++;
+  } else if (finalResultRound.includes("Win")) {
+    userCount++;
+  } else {
+    userCount = userCount;
+    computerCount = computerCount;
+  }
+  let currentScores = document.createElement ("p");
+  currentScores.textContent = "User Score: " + userCount + "  Computer Score: " + computerCount;
+  newDiv.appendChild(currentScores);
+  endOfGame();
+
+});
+btnScissors.addEventListener("click", function(){
+  let finalResultRound= playRound("Scissors", getComputerChoice());
+  if (finalResultRound.includes("lose")) {
+    computerCount++;
+  } else if (finalResultRound.includes("Win")) {
+    userCount++;
+  } else {
+    userCount = userCount;
+    computerCount = computerCount;
+  }
+  let currentScores = document.createElement ("p");
+  currentScores.textContent = "User Score: " + userCount + "  Computer Score: " + computerCount;
+  newDiv.appendChild(currentScores);
+  endOfGame();
+
+});
+
 
 function playRound(userSelection, computerSelection) {
   /*   let firstLetterUser = userSelection.slice(0, 1).toUpperCase();
@@ -33,8 +79,6 @@ function playRound(userSelection, computerSelection) {
     result = "Scissors beats Paper! You Win!";
   }
 
-  const newDiv = document.querySelector(".Result");
-
   const playerSelection = document.createElement("p");
   playerSelection.textContent = "Your Selection: " + userSelection;
   const machineSelection = document.createElement("p");
@@ -55,36 +99,24 @@ function getComputerChoice() {
   return choiceOptions[numberChosen];
 }
 
-/* function playGame() {
-  let userCount = 0;
-  let computerCount = 0;
-  let finalResult;
-
-  for (i = 0; i <= 4; i++) {
-    let computerSelection = getComputerChoice();
-    let userSelection = prompt("Choose!");
-    let roundResult = playRound(userSelection, computerSelection);
-    console.log("Computer selection: " + computerSelection);
-    console.log("User selection: " + userSelection);
-    console.log("Result of the round: "+playRound(userSelection, computerSelection));
-    if (roundResult.includes("lose")) {
-      computerCount++;
-    } else if (roundResult.includes("Win")) {
-      userCount++;
-    } else {
-      userCount = userCount;
-      computerCount = computerCount;
+function endOfGame() {
+  if (userCount===5 || computerCount===5){
+    const finalResult = document.createElement("p");
+    if (userCount>computerCount){
+      finalResult.textContent = "YOU WIN!";
+      finalResult.style.color = "green";
+      finalResult.style.fontSize = "30px";
     }
-  }
-  if (userCount > computerCount) {
-    finalResult = "YOU WIN!";
-  } else if (userCount < computerCount) {
-    finalResult = "YOU LOSE!";
-  } else {
-    finalResult = "TIE";
+    else{
+      finalResult.textContent= "YOU LOSE!";
+      finalResult.style.color = "red";
+      finalResult.style.fontSize = "30px";
+    }
+    newDiv.appendChild(finalResult);
+    userCount = 0;
+    computerCount = 0;
   }
 
-  console.log(finalResult + "--> Your score: "+userCount+" Computer score: "+ computerCount);
 }
 
-playGame(); */
+
