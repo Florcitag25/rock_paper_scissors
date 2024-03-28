@@ -1,25 +1,50 @@
+const btnRock = document.querySelector("#Rock");
+const btnPaper = document.querySelector("#Paper");
+const btnScissors = document.querySelector("#Scissors");
+
+btnRock.addEventListener("click", () => playRound("Rock", getComputerChoice()));
+btnPaper.addEventListener("click", () =>
+  playRound("Paper", getComputerChoice())
+);
+btnScissors.addEventListener("click", () =>
+  playRound("Scissors", getComputerChoice())
+);
+
 function playRound(userSelection, computerSelection) {
-  let firstLetterUser = userSelection.slice(0, 1).toUpperCase();
+  /*   let firstLetterUser = userSelection.slice(0, 1).toUpperCase();
   let restOfLetters = userSelection
     .slice(1, userSelection.length)
     .toLowerCase();
-  let userSelection2 = firstLetterUser + restOfLetters;
+  let userSelection2 = firstLetterUser + restOfLetters; */
   let result = "";
-  if (userSelection2 === computerSelection) {
+  if (userSelection === computerSelection) {
     result = "Tie! Try again.";
-  } else if (userSelection2 == "Rock" && computerSelection == "Paper") {
+  } else if (userSelection == "Rock" && computerSelection == "Paper") {
     result = "Paper beats Rock! You lose!";
-  } else if (userSelection2 == "Rock" && computerSelection == "Scissors") {
+  } else if (userSelection == "Rock" && computerSelection == "Scissors") {
     result = "Rock beats Scissors! You Win!";
-  } else if (userSelection2 == "Paper" && computerSelection == "Rock") {
+  } else if (userSelection == "Paper" && computerSelection == "Rock") {
     result = "Paper beats Rock! You Win!";
-  } else if (userSelection2 == "Paper" && computerSelection == "Scissors") {
+  } else if (userSelection == "Paper" && computerSelection == "Scissors") {
     result = "Scissors beats Paper! You lose!";
-  } else if (userSelection2 == "Scissors" && computerSelection == "Rock") {
+  } else if (userSelection == "Scissors" && computerSelection == "Rock") {
     result = "Rock beats Scissors! You lose!";
   } else {
     result = "Scissors beats Paper! You Win!";
   }
+
+  const newDiv = document.querySelector(".Result");
+
+  const playerSelection = document.createElement("p");
+  playerSelection.textContent = "Your Selection: " + userSelection;
+  const machineSelection = document.createElement("p");
+  machineSelection.textContent = "Computer's Selection: " + computerSelection;
+  const roundResult = document.createElement("p");
+  roundResult.textContent = "Result: " + result;
+
+  newDiv.appendChild(playerSelection);
+  newDiv.appendChild(machineSelection);
+  newDiv.appendChild(roundResult);
 
   return result;
 }
@@ -30,7 +55,7 @@ function getComputerChoice() {
   return choiceOptions[numberChosen];
 }
 
-function playGame() {
+/* function playGame() {
   let userCount = 0;
   let computerCount = 0;
   let finalResult;
@@ -62,4 +87,4 @@ function playGame() {
   console.log(finalResult + "--> Your score: "+userCount+" Computer score: "+ computerCount);
 }
 
-playGame();
+playGame(); */
